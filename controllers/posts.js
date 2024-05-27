@@ -22,11 +22,12 @@ const index = function (req, res) {
 const show = function (req, res) {
   const slugDolce = req.params.slug
   const dolceRicerca = posts.find(dolce => dolce.slug == slugDolce)
-  console.log(posts)
+  console.log(dolceRicerca)
   if (dolceRicerca) {
     let html = `
-    <h2>${posts.title}</h2>
-    <p>${posts.content}</p>
+    <h2>${dolceRicerca.title}</h2>
+    <p>${dolceRicerca.content}</p>
+    <p><strong>Tags:</strong> ${dolceRicerca.tags.join(', ')}</p>
     `;
     res.type('html').send(html)
   }
@@ -34,7 +35,7 @@ const show = function (req, res) {
     res.status(404).send("Dolce non trovato");
   }
 }
-// <p><strong>Tags:</strong> ${posts.tags.join(', ')}</p>`)
+
 module.exports = {
   index,
   show
